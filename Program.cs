@@ -3,6 +3,7 @@
 Console.WriteLine("Задайте размер массива: количество строк и столбцов:");
 int rows = Convert.ToInt32(Console.ReadLine());
 int cols = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine();
 int [,] array = new int [rows,cols];
 
 void CreateArray()
