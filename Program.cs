@@ -1,36 +1,59 @@
-﻿//Задача 1: Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, 
-//и возвращает значение этого элемента или же указание, что такого элемента нет.
+﻿//Задача 3: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
 
-int [,] array = new int[11,13]; 
+Console.WriteLine("Задайте размер массива: количество строк и столбцов:");
+int rows = Convert.ToInt32(Console.ReadLine());
+int cols = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine();
+int [,] array = new int [rows,cols];
 
 void CreateArray()
 {
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-       for (int j = 0; j < array.GetLength(1); j++)
-       {
-        array[i,j] = new Random().Next(1,10);
-        Console.Write(array[i,j]+ " ");
-       }
-       Console.WriteLine();
-    }
+   for (int i = 0; i < array.GetLength(0); i++)
+   {
+      for (int j = 0; j < array.GetLength(1); j++)
+      {
+         array [i,j] = new Random().Next(1,101);
+      }
+   }
 }
 
-void FindEl()
+void PrintArray()
 {
-   Console.WriteLine("Введите номер строки и столбца");
-   int a = Convert.ToInt32(Console.ReadLine()); 
-   int b = Convert.ToInt32(Console.ReadLine());
-   
-   if (a < array.GetLength(0) && b < array.GetLength(1))
+    for (int i = 0; i < array.GetLength(0); i++)
    {
-    Console.WriteLine("Искомый элемент: "+ array[a,b]);    
+      for (int j = 0; j < array.GetLength(1); j++)
+      {
+         Console.Write(array[i,j]+ " ");
+      }
+      Console.WriteLine();      
    }
-   else
+   Console.WriteLine();  
+}
+
+void FindMinSumRow()
+{
+   int minSum = 0;
+   int minRow = 0;
+    for (int i = 0; i < array.GetLength(0); i++)
    {
-    Console.WriteLine("Такого элемента в массиве нет."); 
+      int sum = 0;
+      for (int j = 0; j < array.GetLength(1); j++)
+      {
+         sum += array[i,j];
+      }
+      if (i == 0)
+      {
+         minSum = sum;
+      }
+      else if(sum < minSum)
+      {
+         minRow = i;      
+      }
    }
-} 
+   Console.WriteLine($"Строка с наименьшей суммой элементов: {minRow+1}");   
+}
 
 CreateArray();
-FindEl();
+PrintArray();
+FindMinSumRow();
+
